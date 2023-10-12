@@ -10,12 +10,17 @@ public class Parallax : MonoBehaviour
     float playerStartPos; //Float used to track the startig position of the player
     public float speed = 0.5f; //how fast to scroll change for each layer
 
-    private void Start()
+    void Start()
     {
         player = GameObject.Find("Player");
         rend = GetComponent<Renderer>();
         playerStartPos = (player.transform.position.x - playerStartPos) * speed;
+    }
 
-        rend.material.SetTextureOffset("_MainText", new Vector2(offset, 0f));
+    private void Update()
+    {
+        float offset = (player.transform.position.x - playerStartPos) * speed;
+
+        rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0f));
     }
 }
